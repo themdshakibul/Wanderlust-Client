@@ -10,6 +10,7 @@ import {
   TextField,
   Select,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const AddDestinationsPage = () => {
   const onSubmit = async (e) => {
@@ -23,7 +24,7 @@ const AddDestinationsPage = () => {
       body: JSON.stringify(destination),
     });
     const data = await res.json();
-    console.log(data);
+    redirect("/destinations");
   };
 
   return (
