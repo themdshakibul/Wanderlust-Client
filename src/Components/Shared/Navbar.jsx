@@ -46,10 +46,13 @@ const Navbar = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/add-destinations">Add Destinations</Link>
+              <Link href="/destinations">Destinations</Link>
             </li>
             <li>
               <Link href="#">My Book List</Link>
+            </li>
+            <li>
+              <Link href="/add-destinations">Add Destinations</Link>
             </li>
           </ul>
         </div>
