@@ -2,11 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { use, useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import { authClient } from "../lib/auth-client";
+import UserAccount from "./UserAccount";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { data } = authClient.useSession();
+  const user = data?.user;
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
@@ -65,18 +70,18 @@ const Navbar = () => {
           />
         </div>
         <ul className="hidden items-center gap-4 md:flex">
-          <li>
-            <Link href="/" className="flex items-center gap-2">
-              {" "}
-              <CgProfile size={25} /> Profile
-            </Link>
-          </li>
-          <li>
-            <Link href="#">Login</Link>
-          </li>
-          <li>
-            <Link href="#">Sign Up</Link>
-          </li>
+          {user ? (
+            <UserAccount user={user} />
+          ) : (
+            <>
+              <li>
+                <Link href="/auth/sigin">Login</Link>
+              </li>
+              <li>
+                <Link href="/auth/signup">Sign Up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </header>
       {isMenuOpen && (
