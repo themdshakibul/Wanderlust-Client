@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { redirect } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
@@ -32,6 +33,16 @@ const SignUpPage = () => {
 
     if (error) {
       toast.error(error.message);
+    }
+  };
+
+  const siginWidthGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+
+    if (data) {
+      toast.success("Sigin Successfull");
     }
   };
 
@@ -93,6 +104,18 @@ const SignUpPage = () => {
           <Button type="submit" className="w-full rounded-none bg-cyan-500">
             <Check />
             Login Accout
+          </Button>
+        </div>
+        <div className="text-center">
+          <h2 className="whitespace-normal text-xl font-semibold py-5">
+            Or SignUp width
+          </h2>
+          <Button
+            onClick={siginWidthGoogle}
+            variant="outline"
+            className="rounded-none w-full"
+          >
+            <FcGoogle /> Sign in Width google
           </Button>
         </div>
       </Form>

@@ -1,22 +1,22 @@
 "use client";
 
+import { createDestinationsById } from "@/Components/lib/data";
 import { TriangleExclamation } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 import { redirect } from "next/navigation";
 import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const DeleteDestinationsCard = ({ Destinations }) => {
   const { _id, destinationName } = Destinations;
 
   const handelDelet = async () => {
-    const res = await fetch(`http://localhost:5000/destination/${_id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
-    console.log(data);
+    const delteData = await createDestinationsById(_id);
 
-    redirect("/destinations");
+    if (delteData) {
+      toast.success(`${destinationName} Delet Successfull`);
+      redirect("/destinations");
+    }
   };
 
   return (
