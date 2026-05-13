@@ -1,5 +1,6 @@
 "use client";
 
+import { psotDestinations } from "@/Components/lib/data";
 import {
   Button,
   FieldError,
@@ -11,6 +12,7 @@ import {
   Select,
 } from "@heroui/react";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AddDestinationsPage = () => {
   const onSubmit = async (e) => {
@@ -18,13 +20,12 @@ const AddDestinationsPage = () => {
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
 
-    const res = await fetch("http://localhost:5000/destination", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(destination),
-    });
-    const data = await res.json();
-    redirect("/destinations");
+    const postDestination = psotDestinations(destination);
+
+    if (postDestination) {
+      toast.success(`Add Destination Successfull`);
+      redirect("/destinations");
+    }
   };
 
   return (

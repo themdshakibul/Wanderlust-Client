@@ -11,6 +11,7 @@ import {
   Card,
 } from "@heroui/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const BookingCard = ({ Destinations }) => {
   const { data } = authClient.useSession();
@@ -34,6 +35,9 @@ const BookingCard = ({ Destinations }) => {
     };
 
     const data = await createBookingData(bookingData);
+    if (data) {
+      toast.success(`${destinationName} Booking Successfull`);
+    }
   };
 
   return (

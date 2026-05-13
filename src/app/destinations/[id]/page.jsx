@@ -12,7 +12,7 @@ const DestinationsDetailsPage = async ({ params }) => {
   const { id } = await params;
   const Destinations = await getDestinationsById(id);
 
-  const { destinationName, country, price, duration, imageUrl, description } =
+  const { destinationName, country, duration, imageUrl, description } =
     Destinations;
 
   return (

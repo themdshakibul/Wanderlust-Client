@@ -1,4 +1,5 @@
 "use client";
+import { editDestinationsById } from "@/Components/lib/data";
 import {
   Button,
   FieldError,
@@ -12,6 +13,7 @@ import {
   Select,
 } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const EditDestinationsCard = ({ Destinations }) => {
   const {
@@ -31,12 +33,11 @@ const EditDestinationsCard = ({ Destinations }) => {
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:5000/destination/${_id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(destination),
-    });
-    const data = await res.json();
+    const editDestination = await editDestinationsById(_id, destination);
+
+    if (editDestination) {
+      toast.success(`${destinationName} Edit Successfull`);
+    }
   };
 
   return (
