@@ -24,8 +24,8 @@ const BookingCard = ({ Destinations }) => {
 
   const hadelBooking = async () => {
     const bookingData = {
-      userId: user.id,
-      userName: user.name,
+      userId: user?.id,
+      userName: user?.name,
       destinationId: _id,
       destinationName,
       price,

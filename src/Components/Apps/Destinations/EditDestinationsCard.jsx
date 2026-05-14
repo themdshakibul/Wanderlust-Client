@@ -37,6 +37,7 @@ const EditDestinationsCard = ({ Destinations }) => {
 
     if (editDestination) {
       toast.success(`${destinationName} Edit Successfull`);
+      window.location.reload();
     }
   };
 

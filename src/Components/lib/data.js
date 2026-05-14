@@ -64,3 +64,19 @@ export const createBookingData = async (bookingData) => {
   const data = await res.json();
   return data;
 };
+
+// my bookingData
+export const mybookingData = async (id) => {
+  const res = await fetch(`http://localhost:5000/booking/${id}`);
+  const data = await res.json();
+  return data;
+};
+
+export const canselBooking = async (bookingId) => {
+  const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  return data;
+};

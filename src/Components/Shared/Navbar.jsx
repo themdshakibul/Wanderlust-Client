@@ -54,7 +54,7 @@ const Navbar = () => {
               <Link href="/destinations">Destinations</Link>
             </li>
             <li>
-              <Link href="#">My Book List</Link>
+              <Link href="/my-booking">My Book List</Link>
             </li>
             <li>
               <Link href="/add-destinations">Add Destinations</Link>
@@ -88,7 +88,7 @@ const Navbar = () => {
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
             <li>
-              <Link href="#" className="block py-2">
+              <Link href="/" className="block py-2">
                 Home
               </Link>
             </li>
@@ -98,23 +98,22 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="block py-2">
+              <Link href="/my-booking" className="block py-2">
                 My Book List
               </Link>
             </li>
-            <li>
-              <Link href="#" className="block py-2">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2">
-                Login
-              </Link>
-              <Link href="#" className="block py-2">
-                Sign Up
-              </Link>
-            </li>
+            {user ? (
+              <UserAccount user={user} />
+            ) : (
+              <>
+                <li>
+                  <Link href="/auth/sigin">Login</Link>
+                </li>
+                <li>
+                  <Link href="/auth/signup">Sign Up</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       )}
