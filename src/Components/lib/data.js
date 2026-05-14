@@ -72,6 +72,8 @@ export const mybookingData = async (id) => {
   return data;
 };
 
+
+
 export const canselBooking = async (bookingId) => {
   const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
     method: "DELETE",
