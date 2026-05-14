@@ -1,13 +1,13 @@
 "use client";
 
-import { canselBooking } from "@/Components/lib/data";
+import { DeleteBooking } from "@/Components/lib/data";
 import { TriangleExclamation } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 import { toast } from "react-toastify";
 
 const AlardDilog = ({ bookingId }) => {
   const handelCancelBooking = async () => {
-    const cansel = await canselBooking(bookingId);
+    const cansel = await DeleteBooking(bookingId);
     if (cansel) {
       toast.success("Cansel Successfull");
       window.location.reload();
