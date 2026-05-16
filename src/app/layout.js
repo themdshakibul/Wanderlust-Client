@@ -13,7 +13,7 @@ export const metadata = {
   description:
     "Discover extraordinary travel experiences and hidden gems around the world.",
   icons: {
-    icon: "/assets/Travel-png-17313.png",
+    icon: "/assets/travel.png",
   },
 };
 
