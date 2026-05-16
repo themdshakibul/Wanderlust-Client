@@ -55,12 +55,15 @@ export const DeleteDestinationsById = async (_id, tokenData) => {
 };
 
 // edit
-export const editDestinationsById = async (_id, destination) => {
+export const editDestinationsById = async (_id, destination, tokenData) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${_id}`,
     {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
       body: JSON.stringify(destination),
     },
   );

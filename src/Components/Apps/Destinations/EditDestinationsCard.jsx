@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/Components/lib/auth-client";
 import { editDestinationsById } from "@/Components/lib/data";
 import {
   Button,
@@ -33,7 +34,13 @@ const EditDestinationsCard = ({ Destinations }) => {
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
 
-    const editDestination = await editDestinationsById(_id, destination);
+    const { data: tokenData } = await authClient.token();
+
+    const editDestination = await editDestinationsById(
+      _id,
+      destination,
+      tokenData,
+    );
 
     if (editDestination) {
       toast.success(`${destinationName} Edit Successfull`);
