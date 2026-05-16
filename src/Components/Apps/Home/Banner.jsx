@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className="relative w-full min-h-screen lg:h-[90vh] flex flex-col items-center justify-center overflow-hidden py-20 lg:py-0">
       {/* Background Image with Deep Blue Overlay */}
-      <div className="absolute inset-0 bg-[url('/assets/banner.png')] bg-cover bg-center bg-no-repeat transition-transform duration-1000 lg:hover:scale-105">
+      <div className="absolute inset-0 bg-[url('/assets/Banner.png')] bg-cover bg-center bg-no-repeat transition-transform duration-1000 lg:hover:scale-105">
         <div className="absolute inset-0 bg-linear-to-b from-cyan-900/70 via-black/40 to-black/80" />
       </div>
 
