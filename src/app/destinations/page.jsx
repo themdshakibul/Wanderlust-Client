@@ -10,10 +10,7 @@ export const metadata = {
 };
 
 const DestinationsPage = async () => {
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
-  const destinations = await getDestinations(token);
+  const destinations = await getDestinations();
 
   return (
     <section className="min-h-screen bg-black pt-15 pb-20">
