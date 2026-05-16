@@ -1,7 +1,9 @@
 import BookingCard from "@/Components/Apps/Destinations/BookingCard";
 import DeleteDestinationsCard from "@/Components/Apps/Destinations/DeleteDestinationsCard";
 import EditDestinationsCard from "@/Components/Apps/Destinations/EditDestinationsCard";
+import { auth } from "@/Components/lib/auth";
 import { getDestinationsById } from "@/Components/lib/data";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoCalendarNumber } from "react-icons/io5";
@@ -14,7 +16,10 @@ export const metadata = {
 
 const DestinationsDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const Destinations = await getDestinationsById(id);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const Destinations = await getDestinationsById(id, token);
 
   const { destinationName, country, duration, imageUrl, description } =
     Destinations;

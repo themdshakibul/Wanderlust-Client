@@ -42,7 +42,9 @@ const BookingCard = ({ Destinations }) => {
       departureDate: new Date(date),
     };
 
-    const res = await createBookingData(bookingData);
+    const { data: tokenData } = await authClient.token();
+    const res = await createBookingData(bookingData, tokenData);
+
     if (res) {
       toast.success(`${destinationName} Booking Successful`, {
         icon: "🚀",
@@ -67,7 +69,9 @@ const BookingCard = ({ Destinations }) => {
               <h2 className="text-5xl font-black text-cyan-400 tracking-tighter">
                 ${price}
               </h2>
-              <span className="text-gray-400 text-sm font-medium">/ person</span>
+              <span className="text-gray-400 text-sm font-medium">
+                / person
+              </span>
             </div>
           </div>
 
@@ -75,11 +79,7 @@ const BookingCard = ({ Destinations }) => {
 
           {/* Date Picker Section */}
           <div className="space-y-4">
-            <DateField 
-              onChange={setDate} 
-              name="date"
-              className="w-full"
-            >
+            <DateField onChange={setDate} name="date" className="w-full">
               <Label className="text-gray-400 text-[10px] uppercase tracking-widest ml-2 mb-2 block font-bold">
                 Select Departure Date
               </Label>
@@ -87,8 +87,8 @@ const BookingCard = ({ Destinations }) => {
                 <DateField.Group className="flex gap-1 text-white">
                   <DateField.Input>
                     {(segment) => (
-                      <DateField.Segment 
-                        segment={segment} 
+                      <DateField.Segment
+                        segment={segment}
                         className="focus:bg-cyan-500 focus:text-black text-black rounded px-0.5 outline-none"
                       />
                     )}
@@ -109,7 +109,7 @@ const BookingCard = ({ Destinations }) => {
               <FaBolt className="group-hover:animate-pulse" />
               Confirm Booking
             </Button>
-            
+
             <p className="text-center text-gray-500 text-[10px] mt-4 uppercase tracking-tighter">
               * No hidden charges. Instant confirmation.
             </p>
@@ -119,8 +119,12 @@ const BookingCard = ({ Destinations }) => {
 
       {/* Trust Badge Below Card */}
       <div className="mt-6 flex items-center justify-center gap-6 opacity-40 grayscale group-hover:grayscale-0 transition-all">
-         <span className="text-[10px] text-white font-bold tracking-widest uppercase">Safe Payment</span>
-         <span className="text-[10px] text-white font-bold tracking-widest uppercase">24/7 Support</span>
+        <span className="text-[10px] text-white font-bold tracking-widest uppercase">
+          Safe Payment
+        </span>
+        <span className="text-[10px] text-white font-bold tracking-widest uppercase">
+          24/7 Support
+        </span>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import DestinationsCard from "@/Components/Apps/Destinations/DestinationsCard";
+import { auth } from "@/Components/lib/auth";
 import { getDestinations } from "@/Components/lib/data";
+import { headers } from "next/headers";
 
 export const metadata = {
   title: "Wanderlust | Destinations Page",
@@ -8,7 +10,10 @@ export const metadata = {
 };
 
 const DestinationsPage = async () => {
-  const destinations = await getDestinations();
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const destinations = await getDestinations(token);
 
   return (
     <section className="min-h-screen bg-black pt-15 pb-20">

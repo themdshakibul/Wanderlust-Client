@@ -22,7 +22,10 @@ const MyBookingPage = async () => {
   });
 
   const user = session?.user;
-  const Booking = await bookingData(user?.id);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const Booking = await bookingData(user?.id, token);
 
   return (
     <section className="bg-black pb-20 pt-20">

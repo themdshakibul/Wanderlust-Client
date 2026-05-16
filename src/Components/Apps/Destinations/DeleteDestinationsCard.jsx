@@ -1,9 +1,10 @@
 "use client";
 
+import { authClient } from "@/Components/lib/auth-client";
 import { DeleteDestinationsById } from "@/Components/lib/data";
 import { TriangleExclamation } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { MdDeleteForever } from "react-icons/md";
 import { toast } from "react-toastify";
 
@@ -11,7 +12,8 @@ const DeleteDestinationsCard = ({ Destinations }) => {
   const { _id, destinationName } = Destinations;
 
   const handelDelet = async () => {
-    const delteData = await DeleteDestinationsById(_id);
+    const { data: tokenData } = await authClient.token();
+    const delteData = await DeleteDestinationsById(_id, tokenData);
 
     if (delteData) {
       toast.success(`${destinationName} Delet Successfull`);

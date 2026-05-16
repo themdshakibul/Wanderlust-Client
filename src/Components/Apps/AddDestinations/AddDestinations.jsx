@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/Components/lib/auth-client";
 import { psotDestinations } from "@/Components/lib/data";
 import {
   Button,
@@ -20,7 +21,8 @@ const AddDestinations = () => {
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
 
-    const postDestination = psotDestinations(destination);
+    const { data: tokenData } = await authClient.token();
+    const postDestination = await psotDestinations(destination, tokenData);
 
     if (postDestination) {
       toast.success(`Add Destination Successfull`);
