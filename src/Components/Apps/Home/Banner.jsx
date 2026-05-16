@@ -1,5 +1,6 @@
 import { Separator } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -34,9 +35,11 @@ const Banner = () => {
           <button className="px-8 py-3.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-full transition-all shadow-lg shadow-cyan-500/25 active:scale-95 text-sm sm:text-base">
             EXPLORE NOW
           </button>
-          <button className="px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 rounded-full transition-all active:scale-95 text-sm sm:text-base">
-            VIEW DESTINATION
-          </button>
+          <Link href={"/destinations"}>
+            <button className="cursor-pointer px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 rounded-full transition-all active:scale-95 text-sm sm:text-base">
+              VIEW DESTINATION
+            </button>
+          </Link>
         </div>
       </div>
 
