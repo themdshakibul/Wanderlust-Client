@@ -11,7 +11,7 @@ const Banner = () => {
         <Image
           fill
           priority
-          src="/assets/banner.png"
+          src="/assets/Banner.png"
           alt="Banner"
           className="object-cover scale-105"
         />
