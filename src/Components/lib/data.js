@@ -12,6 +12,12 @@ export const createDestinations = async () => {
   return data;
 };
 
+export const getFetured = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/featured`);
+  const data = await res.json();
+  return data;
+};
+
 // post
 export const psotDestinations = async (destination, tokenData) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
